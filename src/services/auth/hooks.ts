@@ -6,7 +6,7 @@ import { LoginInputs } from "../../pages/Login";
 import { RegisterInputs } from "../../pages/Register";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/Slices/userSlice";
-import { getUserHandler, userLoginHandler, userRegisterHandler } from "./utils";
+import { getUserHandler, userLoginHandler, userRegisterHandler } from "./api";
 
 export const cookie = new Cookies(null, { path: "/" });
 
@@ -15,10 +15,10 @@ export const useLogin = ({ navigate }: { navigate: NavigateFunction }) => {
   return useMutation({
     mutationFn: (data: LoginInputs) => userLoginHandler(data),
     onError: (error: any) => {
-      toast.error(error.message || "An unexpected Error occurred!");
+      toast.error(error.message || "خطایی رخ داده بعدا امتحان کنید");
     },
     onSuccess: (user) => {
-      cookie.set("userToken", user.token);
+      cookie.set("userToken", user.token , {path : "/"});
       dispatch(setUser(user));
       navigate("/");
     },
@@ -29,7 +29,7 @@ export const useRegister = ({ navigate }: { navigate: NavigateFunction }) => {
   return useMutation({
     mutationFn: (data: RegisterInputs) => userRegisterHandler(data),
     onError: (error: any) => {
-      toast.error(error.message || "An unexpected error occurred!");
+      toast.error(error.message || "خطایی رخ داده بعدا امتحان کنید");
     },
     onSuccess() {
       navigate("/");
@@ -42,6 +42,8 @@ export const useGetUser = () => {
 
   return useQuery({
     queryKey: ["getUser", userToken],
-    queryFn: getUserHandler
+    queryFn: getUserHandler,
+    enabled: !!userToken,
+    retry: false,
   });
 };

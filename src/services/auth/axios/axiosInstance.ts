@@ -1,11 +1,11 @@
 import axios from "axios";
-import { cookie } from "..";
+import { cookie } from "../hooks";
 
-export const authFetch = axios.create({
+export const AXIOS = axios.create({
   baseURL: "https://api.angoshtarbaz.com/",
 });
 
-authFetch.interceptors.request.use(
+AXIOS.interceptors.request.use(
   (config) => {
     const token = cookie.get("userToken");
 
@@ -24,13 +24,3 @@ authFetch.interceptors.request.use(
   }
 );
 
-authFetch.interceptors.response.use(
-  (res) => res,
-
-  (error) => {
-    if (error?.response?.data?.errors) {
-      return Promise.reject(error.response.data.errors); 
-    }
-    return Promise.reject(error);
-  }
-);

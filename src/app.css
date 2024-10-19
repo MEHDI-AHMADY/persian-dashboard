@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @layer base {
+
   body {
     font-family: "Agdasima" , sans-serif;
     font-size: 18px;
@@ -12,4 +13,5 @@
     @apply bg-primary
   }
 }
+
 

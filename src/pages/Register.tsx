@@ -2,7 +2,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { useRegister } from "../services/auth";
+import { useRegister } from "../services/auth/hooks";
 import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,7 +25,7 @@ export default function Register() {
       .string()
       .required("این فیلد الزامیست")
       .min(3, "حداقل باید 3 کاراکتر داشته باشد!"),
-    email: yup.string().email().required("Email is required!"),
+    email: yup.string().email().required("این فیلد الزامیست"),
     password: yup
       .string()
       .required("این فیلد الزامیست")

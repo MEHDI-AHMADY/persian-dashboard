@@ -1,9 +1,19 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
+import { useGetUser } from "../services/auth/hooks";
+import { cookie } from "../services/auth/hooks"; // Adjust import path as needed
+import Loading from "./Loading";
 
 export default function PrivateRoute() {
+  const token = cookie.get("userToken");
+  const { data: user, isLoading, isError } = useGetUser();
 
-  const user = useAppSelector(state => state.user);
-  
-  return  user.currentUser ? <Outlet /> : <Navigate to="/login" />;
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError || !token) {
+    return <Navigate to="/login" />;
+  }
+
+  return user ? <Outlet /> : <Navigate to="/login" />;
 }
