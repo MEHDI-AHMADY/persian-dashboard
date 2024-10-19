@@ -1,26 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: "Mina", sans-serif;
-    src: url("../public/fonts/Mina-Regular.ttf"), format("truetype");
-    font-display: swap;
-  }
-
   body {
-    font-family: "Mina";
+    font-family: "Agdasima" , sans-serif;
+    font-size: 18px;
+    color: white;
+    @apply bg-primary
   }
 }
 
-@layer components {
-  .custom-bg {
-    background: rgb(195, 255, 254);
-    background: linear-gradient(
-      90deg,
-      rgba(195, 255, 254, 1) 0%,
-      rgba(199, 190, 57, 0.8519782913165266) 90%
-    );
-  }
-}
