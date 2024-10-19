@@ -10,7 +10,7 @@
     font-family: "Agdasima" , sans-serif;
     font-size: 18px;
     color: white;
-    @apply bg-primary
+    @apply bg-secondary
   }
 }
 

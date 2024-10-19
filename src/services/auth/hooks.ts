@@ -4,14 +4,11 @@ import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 import { LoginInputs } from "../../pages/Login";
 import { RegisterInputs } from "../../pages/Register";
-import { useAppDispatch } from "../../redux/hooks";
-import { setUser } from "../../redux/Slices/userSlice";
 import { getUserHandler, userLoginHandler, userRegisterHandler } from "./api";
 
 export const cookie = new Cookies(null, { path: "/" });
 
 export const useLogin = ({ navigate }: { navigate: NavigateFunction }) => {
-  const dispatch = useAppDispatch();
   return useMutation({
     mutationFn: (data: LoginInputs) => userLoginHandler(data),
     onError: (error: any) => {
@@ -19,7 +16,6 @@ export const useLogin = ({ navigate }: { navigate: NavigateFunction }) => {
     },
     onSuccess: (user) => {
       cookie.set("userToken", user.token , {path : "/"});
-      dispatch(setUser(user));
       navigate("/");
     },
   });
@@ -44,6 +40,5 @@ export const useGetUser = () => {
     queryKey: ["getUser", userToken],
     queryFn: getUserHandler,
     enabled: !!userToken,
-    retry: false,
   });
 };

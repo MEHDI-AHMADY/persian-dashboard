@@ -6,7 +6,7 @@ export default {
       backgroundColor : {
         primary : "#171821",
         secondary : "#21222D",
-        orange : "#FCB859"
+        orange : "#FCB859",
       }
     },
   },
