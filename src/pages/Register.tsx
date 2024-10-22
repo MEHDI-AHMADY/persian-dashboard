@@ -1,6 +1,6 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../components/Button";
+import Button from "../components/Button/CustomButton";
 import Input from "../components/Input";
 import { useRegister } from "../services/auth/hooks";
 import { motion } from "framer-motion";
@@ -45,6 +45,7 @@ export default function Register() {
 
   const {
     handleSubmit,
+    register,
     formState: { errors },
   } = methods;
 
@@ -58,7 +59,6 @@ export default function Register() {
 
   return (
     <div className="bg-primary flex items-center justify-center min-h-screen px-5">
-      <FormProvider {...methods}>
         <motion.form
           initial="hidden"
           whileInView="show"
@@ -71,12 +71,14 @@ export default function Register() {
           <Input
             name="fullName"
             placeholder="نام و نام خانوادگی"
+            register={register}
           />
           {errors?.fullName && <p>{errors.fullName.message}</p>}
 
           <Input
             name="email"
             placeholder="ایمیل"
+            register={register}
           />
           {errors?.email && <p>{errors.email.message}</p>}
 
@@ -84,6 +86,8 @@ export default function Register() {
             name="password"
             type="password"
             placeholder="پسورد"
+            register={register}
+            showPasswordToggle
           />
           {errors?.password && <p>{errors.password.message}</p>}
 
@@ -91,6 +95,8 @@ export default function Register() {
             name="confirmPassword"
             type="password"
             placeholder="تکرار پسورد"
+            register={register}
+            showPasswordToggle
           />
           {errors?.confirmPassword && <p>{errors.confirmPassword.message}</p>}
 
@@ -112,7 +118,6 @@ export default function Register() {
             </Link>
           </p>
         </motion.form>
-      </FormProvider>
     </div>
   );
 }

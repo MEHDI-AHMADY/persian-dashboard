@@ -1,56 +1,69 @@
 import { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { Input as ShadcnInput } from "./ui/input";
+import { UseFormRegister } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
+import { cn } from "@/lib/utils";
+import Button from "./Button/CustomButton";
+import {clsx} from "clsx";
 
-type InputProps = {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  type?: string;
-  className?: string;
-  placeholder?: string;
-};
+  register?: UseFormRegister<any>;
+  showPasswordToggle?: boolean;
+  parentClasses?: string;
+}
 
 export default function Input({
   name,
-  type = "text",
+  type,
   className,
-  placeholder,
+  register,
+  showPasswordToggle = false,
+  parentClasses,
   ...rest
 }: InputProps) {
-  const { register } = useFormContext();
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const [isTypePassword, setIsTypePassword] = useState<boolean>(true);
+  const inputType = type === "password" && showPassword ? "text" : type;
 
-  if (type === "password") {
-    return (
-      <div className="relative flex items-center justify-between border-b border-gray-600 rounded-md mt-5">
-        <input
-          {...register(name)}
-          type={isTypePassword ? type : "text"}
-          className={`p-2 rounded-md focus:outline-none bg-transparent w-full ${className}`}
-          placeholder={placeholder}
-        />
-        {isTypePassword ? (
-          <IoMdEye
-            className="text-xl cursor-pointer"
-            onClick={() => setIsTypePassword(false)}
-          />
-        ) : (
-          <IoIosEyeOff
-            className="text-xl cursor-pointer"
-            onClick={() => setIsTypePassword(true)}
-          />
-        )}
-      </div>
-    );
-  }
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+  const inputProps = register ? register(name) : {};
 
   return (
-    <input
-      {...register(name)}
-      type={type}
-      className={`p-2 rounded-md focus:outline-none border-b border-gray-600 bg-transparent mt-5 ${className}`}
-      placeholder={placeholder}
-    />
+    <div
+      className={clsx(
+        "flex items-center justify-between",
+        parentClasses,
+        inputType !== "password"
+          ? "static"
+          : "relative"
+      )}
+    >
+      <ShadcnInput
+        type={inputType}
+        className={cn(
+          "w-full p-2 rounded-md focus:outline-none border-b border-gray-600 bg-transparent mt-5",
+          className
+        )}
+        {...rest}
+        {...inputProps}
+      />
+
+      {type === "password" && showPasswordToggle && (
+        <Button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className="absolute left-0 top-[34%]"
+        >
+          {showPassword ? (
+            <IoIosEyeOff className="h-4 w-4 text-gray-500" />
+          ) : (
+            <IoMdEye className="h-4 w-4 text-gray-500" />
+          )}
+        </Button>
+      )}
+    </div>
   );
 }

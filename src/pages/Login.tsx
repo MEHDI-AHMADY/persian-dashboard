@@ -1,5 +1,5 @@
 import { useForm, FormProvider } from "react-hook-form";
-import Button from "../components/Button";
+import Button from "../components/Button/CustomButton";
 import Input from "../components/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../services/auth/hooks";
@@ -34,6 +34,7 @@ export default function Login() {
   const methods = useForm<LoginInputs>({ resolver: yupResolver(schema) });
   const {
     handleSubmit,
+    register,
     formState: { errors },
   } = methods;
 
@@ -59,6 +60,7 @@ export default function Login() {
           <Input
             name="email"
             placeholder="ایمیل"
+            register={register}
           />
           {errors?.email && <p>{errors?.email?.message}</p>}
 
@@ -66,6 +68,8 @@ export default function Login() {
             name="password"
             placeholder="پسورد"
             type="password"
+            register={register}
+            showPasswordToggle
           />
           {errors?.password && <p>{errors.password.message}</p>}
 
