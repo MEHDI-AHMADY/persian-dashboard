@@ -5,7 +5,6 @@ import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import Button from "./Button/CustomButton";
-import {clsx} from "clsx";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -33,12 +32,9 @@ export default function Input({
 
   return (
     <div
-      className={clsx(
-        "flex items-center justify-between",
+      className={cn(
+        "relative flex items-center justify-between",
         parentClasses,
-        inputType !== "password"
-          ? "static"
-          : "relative"
       )}
     >
       <ShadcnInput

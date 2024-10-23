@@ -19,7 +19,7 @@ export default function Header() {
         type="text"
         name="search"
         placeholder="جستجو کنید"
-        parentClasses="flex-[3] -mt-4"
+        parentClasses="flex-[3] -mt-4 max-w-[500px]"
       />
 
       <div className="md:hidden p-2">

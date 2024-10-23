@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { sidebarIcons } from "../../icons";
+import { sidebarIcons } from "./sidebarIcons";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar() {
   const { pathParam } = useParams();
 
   return (
-    <div className="hidden sticky top-0 right-0 w-88 h-screen md:flex gap-5 flex-1">
+    <nav className="hidden sticky top-0 right-0 w-88 h-screen md:flex gap-5 flex-1">
       <div className="hidden lg:flex bg-primary flex-col gap-[36px] py-20">
         {sidebarIcons.map((icon, index) => (
           <SidebarItem
@@ -22,7 +22,7 @@ export default function Sidebar() {
         ))}
       </div>
 
-      <div className="py-16 flex flex-col gap-[7px] bg-primary px-[20px]">
+      <div className="py-16 flex flex-col gap-[6px] bg-primary px-[20px]">
         {sidebarIcons.map((icon, index) => (
           <SidebarItem
             key={index}
@@ -33,6 +33,6 @@ export default function Sidebar() {
           />
         ))}
       </div>
-    </div>
+    </nav>
   );
 }

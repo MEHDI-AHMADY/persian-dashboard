@@ -1,4 +1,4 @@
-import { Button as ShadcnBtn } from "./button";
+import { Button as ShadcnBtn } from "../ui/button";
 
 type ButtonProps = {
   className?: string;

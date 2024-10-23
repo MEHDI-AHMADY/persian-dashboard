@@ -1,11 +1,15 @@
 import SidebarItem from "../Sidebar/SidebarItem";
-import { sidebarIcons } from "../../icons";
+import { sidebarIcons } from "../Sidebar/sidebarIcons";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const menuItem = {
   hidden: { opacity: 0, x: 60 },
-  show: (i:number) => ({ opacity: 1, x: 0 , transition : {delay : i * 0.2 , duration : 0.4}}),
+  show: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: i * 0.2, duration: 0.4 },
+  }),
 };
 
 export default function ListMenu() {

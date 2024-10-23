@@ -3,12 +3,22 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
+import Users from "./pages/Users";
+import Layout from "./Layout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <PrivateRoute />,
-    children: [{ path: "/", element: <Home /> }],
+    children: [
+      {
+        element: <Layout />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "/users", element: <Users /> },
+        ],
+      },
+    ],
   },
 
   { path: "/login", element: <Login /> },
