@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { clsx } from "clsx";
+import { useLocation } from "react-router-dom";
 import { sidebarIcons } from "./sidebarIcons";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar() {
-  const { pathParam } = useParams();
+  const { pathname } = useLocation();
+
+  console.log(pathname);
 
   return (
     <nav className="hidden sticky top-0 right-0 w-88 h-screen md:flex gap-5 flex-1">
@@ -13,11 +16,12 @@ export default function Sidebar() {
             key={index}
             path={icon.path}
             icon={icon.icon}
-            className={`px-[36px] ${
-              pathParam?.startsWith(icon.path) || index === 0
-                ? "border-l-2 border-[#A9DFD8]"
-                : ""
-            }`}
+            className={clsx("px-[36px]", {
+              "border-l-2 border-[#A9DFD8]":
+                icon.path === "/"
+                  ? pathname === icon.path
+                  : pathname.startsWith(icon.path),
+            })}
           />
         ))}
       </div>
@@ -27,9 +31,12 @@ export default function Sidebar() {
           <SidebarItem
             key={index}
             {...icon}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-md ${
-              index === 0 || pathParam?.startsWith(icon.path) ? "bg-[#A9DFD8] rounded-md text-black" : "hover:border-b"
-            }`}
+            className={clsx("flex items-center gap-2 px-4 py-2.5 rounded-md", {
+              "bg-[#A9DFD8] rounded-md text-black":
+                icon.path === "/"
+                  ? pathname === icon.path
+                  : pathname.startsWith(icon.path),
+            })}
           />
         ))}
       </div>
