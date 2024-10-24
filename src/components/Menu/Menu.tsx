@@ -15,7 +15,7 @@ const navAnimation = {
 export default function Menu({ showMenu, setShowMenu }: MenuProps) {
   return (
     <div
-      className={`md:hidden fixed inset-0 backdrop-blur-sm transition-opacity duration-300 flex justify-between ${
+      className={`md:hidden z-10 fixed inset-0 backdrop-blur-sm transition-opacity duration-300 flex justify-between ${
         showMenu ? "opacity-100" : "opacity-0"
       }`}
       onClick={() => setShowMenu(false)}
