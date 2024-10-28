@@ -1,6 +1,6 @@
 import { AvatarDemo } from "./Avatar";
 import { IoIosNotifications } from "react-icons/io";
-import Input from "../Input";
+import Input from "../Input/Input";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
 import Menu from "../Menu/Menu";

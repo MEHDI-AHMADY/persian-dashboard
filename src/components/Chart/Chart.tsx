@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  TooltipProps
+  TooltipProps,
 } from "recharts";
 
 type ChartType = "bar" | "line" | "area";
@@ -28,6 +28,7 @@ interface ChartProps {
   title: string;
   className?: string;
   tick?: boolean;
+  tooltipContent?: (props: TooltipProps<any, any>) => React.ReactNode;
 }
 
 const Chart = ({
@@ -39,8 +40,8 @@ const Chart = ({
   yAxis,
   title,
   className = "",
+  tooltipContent,
 }: ChartProps) => {
-  
   const ChartComponents = {
     bar: BarChart,
     line: LineChart,
@@ -65,7 +66,7 @@ const Chart = ({
       </CardHeader>
       <CardContent
         className={`w-[112%] flex justify-between p-0 mb-0`}
-        style={{height : `${height}px`}}
+        style={{ height: `${height}px` }}
       >
         <ResponsiveContainer width="100%" height="100%">
           <ChartComponent data={data} barCategoryGap="20%">
@@ -101,7 +102,7 @@ const Chart = ({
                 {...(type === "area" && { fillOpacity: 0.3 })}
               />
             ))}
-            <Tooltip content={<CustomToolTip/>} cursor={false}/>
+            <Tooltip content={tooltipContent || CustomTooltip} cursor={false} />
           </ChartComponent>
         </ResponsiveContainer>
       </CardContent>
@@ -109,13 +110,16 @@ const Chart = ({
   );
 };
 
-const CustomToolTip = ({ active, payload }: TooltipProps) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<any, any>) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-white border border-gray-300 rounded p-2 shadow-lg">
         <p className="font-bold">{`ماه: ${payload[0].payload.name}`}</p>
         {payload.map((data) => (
-          <p key={data.name} className="text-sm">{`فروش: ${data.value.toLocaleString()} تومان`}</p>
+          <p
+            key={data.name}
+            className="text-sm"
+          >{`فروش: ${data.value.toLocaleString()} تومان`}</p>
         ))}
       </div>
     );

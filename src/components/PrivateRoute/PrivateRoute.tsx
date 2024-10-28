@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useGetUser } from "../services/auth/hooks";
-import { cookie } from "../services/auth/hooks";
-import Loading from "./Loading";
+import { useGetUser } from "../../services/auth/hooks";
+import { cookie } from "../../services/auth/hooks";
+import Loading from "../Loading/Loading";
 
 export default function PrivateRoute() {
   const token = cookie.get("userToken");
