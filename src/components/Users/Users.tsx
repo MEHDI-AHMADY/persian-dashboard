@@ -8,7 +8,7 @@ export default function Users() {
 
   return (
     <div className="col-span-2 md:col-span-3">
-        <DataTable columns={userColumn} data={allUsers.slice(0,5)} title="کاربران"/>
+        <DataTable columns={userColumn|| []} data={allUsers?.slice(0,5) || []} title="کاربران"/>
     </div>
     );
 }

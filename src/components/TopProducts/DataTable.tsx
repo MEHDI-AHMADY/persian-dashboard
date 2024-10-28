@@ -25,7 +25,6 @@ export default function DataTable<TData, TValue>({
   data,
   title,
 }: DataTableProps<TData, TValue>) {
-  
   const table = useReactTable({
     data,
     columns,
@@ -62,37 +61,11 @@ export default function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
-                {row.getVisibleCells().map((cell, index) => {
-                  return (
-                    <>
-                      {index === 2 ? (
-                        <TableCell>
-                          <div className="w-full h-2 rounded-full bg-white">
-                            <div
-                              className="bg-slate-400 h-2 rounded-full"
-                              style={{
-                                width: `${cell.row.original.popularity}%`,
-                              }}
-                            ></div>
-                          </div>
-                        </TableCell>
-                      ) : index === 3 ? (
-                        <TableCell>
-                          <div className="bg-slate-400 rounded-md w-[40px] p-1">
-                            {`${cell.row.original.sales}%`}
-                          </div>
-                        </TableCell>
-                      ) : (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </TableCell>
-                      )}
-                    </>
-                  );
-                })}
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
               </TableRow>
             ))
           ) : (

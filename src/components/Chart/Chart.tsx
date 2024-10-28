@@ -31,7 +31,7 @@ interface ChartProps {
   tooltipContent?: (props: TooltipProps<any, any>) => React.ReactNode;
 }
 
-const Chart = ({
+const Chart: React.FC<ChartProps> = ({
   type,
   data,
   tick = false,
@@ -41,7 +41,7 @@ const Chart = ({
   title,
   className = "",
   tooltipContent,
-}: ChartProps) => {
+}) => {
   const ChartComponents = {
     bar: BarChart,
     line: LineChart,
@@ -86,22 +86,25 @@ const Chart = ({
               tickLine={false}
               axisLine={false}
               tick={tick}
-              tickFormatter={(value) => `${value}`}
+              tickFormatter={(value:number) => `${value}`}
               margin={{ bottom: 0 }}
             />
-            {yAxis.map((axis) => (
-              <DataComponent
-                key={axis}
-                type="monotone"
-                dataKey={axis}
-                stroke={`#A9DFD8`}
-                fill={`#A9DFD8`}
-                strokeWidth={1}
-                dot={false}
-                {...(type === "bar" && { barSize: 15 })}
-                {...(type === "area" && { fillOpacity: 0.3 })}
-              />
-            ))}
+            {yAxis.map((axis) => {
+              const Component = DataComponent as React.ComponentType<any>;
+              return (
+                <Component
+                  key={axis}
+                  type="monotone"
+                  dataKey={axis}
+                  stroke={`#A9DFD8`}
+                  fill={`#A9DFD8`}
+                  strokeWidth={1}
+                  dot={false}
+                  {...(type === "bar" && { barSize: 15 })}
+                  {...(type === "area" && { fillOpacity: 0.3 })}
+                />
+              );
+            })}
             <Tooltip content={tooltipContent || CustomTooltip} cursor={false} />
           </ChartComponent>
         </ResponsiveContainer>
