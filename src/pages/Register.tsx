@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button/CustomButton";
 import Input from "../components/Input/Input";
-import { useRegister } from "../services/auth/hooks";
+import { useRegister } from "../services/hooks";
 import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

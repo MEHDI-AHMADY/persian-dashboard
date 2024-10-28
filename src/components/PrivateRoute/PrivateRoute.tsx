@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useGetUser } from "../../services/auth/hooks";
-import { cookie } from "../../services/auth/hooks";
+import { useGetUser } from "../../services/hooks";
+import { cookie } from "../../services/hooks";
 import Loading from "../Loading/Loading";
 
 export default function PrivateRoute() {

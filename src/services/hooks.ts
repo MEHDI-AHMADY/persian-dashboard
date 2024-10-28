@@ -2,9 +2,9 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
-import { LoginInputs } from "../../pages/Login";
-import { RegisterInputs } from "../../pages/Register";
-import { getUserHandler, userLoginHandler, userRegisterHandler } from "./api";
+import { LoginInputs } from "../pages/Login";
+import { RegisterInputs } from "../pages/Register";
+import { getAllUsers, getUserHandler, userLoginHandler, userRegisterHandler } from "./api";
 
 export const cookie = new Cookies(null, { path: "/" });
 
@@ -42,3 +42,10 @@ export const useGetUser = () => {
     enabled: !!userToken,
   });
 };
+
+export const useGetAllUsers = () => {
+  return useQuery({
+    queryKey : ["getAllUsers"],
+    queryFn : getAllUsers
+  })
+}

@@ -10,7 +10,7 @@ const topProductsData = [
 export default function TopProducts() {
   return (
     <div className="col-span-2">
-        <DataTable columns={columns} data={topProductsData}/>
+        <DataTable columns={columns} data={topProductsData} title="محصولات تاپ"/>
     </div>
   )
 }

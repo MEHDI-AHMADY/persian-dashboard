@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Users from "./pages/Users";
+import Users from "./pages/UserPage";
 import Layout from "./Layout";
 
 export const router = createBrowserRouter([

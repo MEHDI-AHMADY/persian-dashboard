@@ -2,7 +2,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import Button from "../components/Button/CustomButton";
 import Input from "../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../services/auth/hooks";
+import { useLogin } from "../services/hooks";
 import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

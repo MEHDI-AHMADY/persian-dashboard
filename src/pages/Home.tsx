@@ -1,6 +1,7 @@
 import CustomerFulfilment from "@/components/CustomerFulfilment/CustomerFullfilment";
 import Sales from "@/components/Sales/Sales";
 import TopProducts from "@/components/TopProducts/TopProducts";
+import Users from "@/components/Users/Users";
 import YearlySales from "@/components/YearlySales/YearlySales";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <YearlySales />
       <TopProducts />
       <CustomerFulfilment />
+      <Users />
     </div>
   );
 }

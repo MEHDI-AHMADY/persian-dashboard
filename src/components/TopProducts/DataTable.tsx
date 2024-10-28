@@ -17,12 +17,15 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  title: string;
 }
 
 export default function DataTable<TData, TValue>({
   columns,
   data,
+  title,
 }: DataTableProps<TData, TValue>) {
+  
   const table = useReactTable({
     data,
     columns,
@@ -31,7 +34,7 @@ export default function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md bg-primary p-4">
-      <h2>محصولات تاپ</h2>
+      <h2>{title}</h2>
       <Table>
         <TableHeader className="hover:bg-sidebarMainColor hover:text-black">
           {table.getHeaderGroups().map((headerGroup) => (
@@ -54,7 +57,8 @@ export default function DataTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow className="hover:bg-sidebarMainColor hover:text-black"
+              <TableRow
+                className="hover:bg-sidebarMainColor hover:text-black"
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
