@@ -6,6 +6,7 @@ import { useRegister } from "../services/hooks";
 import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import InputError from "@/components/Input/InputError";
 
 export type RegisterInputs = {
   fullName: string;
@@ -59,65 +60,63 @@ export default function Register() {
 
   return (
     <div className="bg-primary flex items-center justify-center min-h-screen px-5">
-        <motion.form
-          initial="hidden"
-          whileInView="show"
-          variants={registerFormAnimation}
-          onSubmit={handleSubmit(registerHandler)}
-          className="bg-secondary p-5 h-fit rounded-md mt-4 flex flex-col min-w-[320px] sm:min-w-[440px]"
+      <motion.form
+        initial="hidden"
+        whileInView="show"
+        variants={registerFormAnimation}
+        onSubmit={handleSubmit(registerHandler)}
+        className="bg-secondary p-5 h-fit rounded-md mt-4 flex flex-col min-w-[320px] sm:min-w-[440px]"
+      >
+        <span className="text-xl text-center w-full">ثبت نام</span>
+
+        <Input
+          name="fullName"
+          placeholder="نام و نام خانوادگی"
+          register={register}
+        />
+        {errors?.fullName && <InputError message={errors?.email?.message} />}
+
+        <Input name="email" placeholder="ایمیل" register={register} />
+        {errors?.email && <InputError message={errors?.email?.message} />}
+
+        <Input
+          name="password"
+          type="password"
+          placeholder="پسورد"
+          register={register}
+          showPasswordToggle
+        />
+        {errors?.password && <InputError message={errors?.email?.message} />}
+
+        <Input
+          name="confirmPassword"
+          type="password"
+          placeholder="تکرار پسورد"
+          register={register}
+          showPasswordToggle
+        />
+        {errors?.confirmPassword && (
+          <InputError message={errors?.email?.message} />
+        )}
+
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="bg-orange text-black rounded-sm mt-4 hover:bg-orange hover:opacity-90"
         >
-          <span className="text-xl text-center w-full">ثبت نام</span>
+          {isPending ? "صبرکنید" : "ثبت"}
+        </Button>
 
-          <Input
-            name="fullName"
-            placeholder="نام و نام خانوادگی"
-            register={register}
-          />
-          {errors?.fullName && <p>{errors.fullName.message}</p>}
-
-          <Input
-            name="email"
-            placeholder="ایمیل"
-            register={register}
-          />
-          {errors?.email && <p>{errors.email.message}</p>}
-
-          <Input
-            name="password"
-            type="password"
-            placeholder="پسورد"
-            register={register}
-            showPasswordToggle
-          />
-          {errors?.password && <p>{errors.password.message}</p>}
-
-          <Input
-            name="confirmPassword"
-            type="password"
-            placeholder="تکرار پسورد"
-            register={register}
-            showPasswordToggle
-          />
-          {errors?.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="bg-orange text-black rounded-sm mt-4"
+        <p className="mt-6">
+          اکانت دارید؟
+          <Link
+            to="/login"
+            className="bg-orange text-black p-1 rounded-sm font-bold mr-1"
           >
-            {isPending ? "صبرکنید..." : "ثبت"}
-          </Button>
-
-          <p className="mt-6">
-              اکانت دارید؟
-            <Link
-              to="/login"
-              className="bg-orange text-black p-1 rounded-sm font-bold mr-1"
-            >
-              لاگین
-            </Link>
-          </p>
-        </motion.form>
+            لاگین
+          </Link>
+        </p>
+      </motion.form>
     </div>
   );
 }

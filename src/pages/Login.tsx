@@ -6,6 +6,7 @@ import { useLogin } from "../services/hooks";
 import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import InputError from "@/components/Input/InputError";
 
 export type LoginInputs = {
   email: string;
@@ -62,7 +63,7 @@ export default function Login() {
             placeholder="ایمیل"
             register={register}
           />
-          {errors?.email && <p>{errors?.email?.message}</p>}
+          {errors?.email && <InputError message={errors?.email?.message} />}
 
           <Input
             name="password"
@@ -71,14 +72,14 @@ export default function Login() {
             register={register}
             showPasswordToggle
           />
-          {errors?.password && <p>{errors.password.message}</p>}
+          {errors?.password &&<InputError message={errors?.email?.message} />}
 
           <Button
             type="submit"
             disabled={isPending}
-            className="bg-orange text-primary rounded-sm mt-4"
+            className="bg-orange text-primary rounded-sm mt-4 hover:bg-orange hover:opacity-90"
           >
-            {isPending ? "صبرکنید..." : "ثبت"}
+            {isPending ? "صبرکنید" : "ثبت"}
           </Button>
 
           <p className="mt-6">

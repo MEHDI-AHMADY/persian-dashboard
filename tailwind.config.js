@@ -11,7 +11,6 @@ export default {
   		backgroundColor: {
   			primary: '#171821',
   			secondary: '#21222D',
-  			orange: '#FCB859'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -20,6 +19,7 @@ export default {
   		},
   		colors: {
 			sidebarMainColor : "#A9DFD8",
+			orange: '#FCB859',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

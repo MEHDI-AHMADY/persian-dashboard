@@ -1,4 +1,4 @@
-import { columns, Product } from "./columns";
+import { columns } from "./columns";
 import DataTable from "./DataTable";
 
 const topProductsData = [

@@ -1,4 +1,5 @@
 import { Button as ShadcnBtn } from "../ui/button";
+import { Loader2 } from "lucide-react";
 
 type ButtonProps = {
   className?: string;
@@ -36,6 +37,7 @@ export default function Button({
       }`}
     >
       {children}
+      {disabled && <Loader2 className="animate-spin" />}
     </ShadcnBtn>
   );
 }
