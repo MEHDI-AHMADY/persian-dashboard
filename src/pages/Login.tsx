@@ -1,12 +1,13 @@
 import { useForm, FormProvider } from "react-hook-form";
-import Button from "../components/Button/CustomButton";
-import Input from "../components/Input/Input";
+import Button from "../components/common/Button/CustomButton";
+import Input from "../components/common/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../services/hooks";
 import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import InputError from "@/components/Input/InputError";
+import InputError from "@/components/common/Input/InputError";
+import AnimatedSvg from "@/components/AnimatedSvg/AnimatedSvg";
 
 export type LoginInputs = {
   email: string;
@@ -49,50 +50,53 @@ export default function Login() {
 
   return (
     <div className="bg-primary flex items-center justify-center min-h-screen px-5">
-      <FormProvider {...methods}>
-        <motion.form
-          initial="hidden"
-          animate="show"
-          variants={loginFormAnimation}
-          onSubmit={handleSubmit(loginHandler)}
-          className="bg-secondary p-5 h-fit rounded-md mt-4 flex flex-col min-w-[320px] sm:min-w-[440px]"
-        >
-          <span className="text-xl text-center w-full">لاگین</span>
-          <Input
-            name="email"
-            placeholder="ایمیل"
-            register={register}
-          />
-          {errors?.email && <InputError message={errors?.email?.message} />}
-
-          <Input
-            name="password"
-            placeholder="پسورد"
-            type="password"
-            register={register}
-            showPasswordToggle
-          />
-          {errors?.password &&<InputError message={errors?.email?.message} />}
-
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="bg-orange text-primary rounded-sm mt-4 hover:bg-orange hover:opacity-90"
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={loginFormAnimation}
+        className="glassy-background relative min-w-[320px] sm:min-w-[440px]"
+      >
+        <FormProvider {...methods}>
+          <form
+            onSubmit={handleSubmit(loginHandler)}
+            className="p-5 h-fit rounded-md flex flex-col "
           >
-            {isPending ? "صبرکنید" : "ثبت"}
-          </Button>
+            <span className="text-xl text-center w-full">لاگین</span>
+            <Input name="email" placeholder="ایمیل" register={register} />
+            {errors?.email && <InputError message={errors?.email?.message} />}
 
-          <p className="mt-6">
-            اکانت ندارید؟
-            <Link
-              to="/register"
-              className="bg-orange text-primary p-1 rounded-sm font-bold mr-1"
+            <Input
+              name="password"
+              placeholder="پسورد"
+              type="password"
+              register={register}
+              showPasswordToggle
+            />
+            {errors?.password && (
+              <InputError message={errors?.email?.message} />
+            )}
+
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="bg-orange text-primary rounded-sm mt-4 hover:bg-orange hover:opacity-90"
             >
-              ثبت نام 
-            </Link>
-          </p>
-        </motion.form>
-      </FormProvider>
-    </div>
+              {isPending ? "صبرکنید" : "ثبت"}
+            </Button>
+
+            <p className="mt-6">
+              اکانت ندارید؟
+              <Link
+                to="/register"
+                className="bg-orange text-primary p-1 rounded-sm font-bold mr-1"
+              >
+                ثبت نام
+              </Link>
+            </p>
+          </form>
+        </FormProvider>
+        <AnimatedSvg />
+      </motion.div>
+      </div>
   );
 }

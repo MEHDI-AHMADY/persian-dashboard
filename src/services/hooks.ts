@@ -20,7 +20,7 @@ export const useLogin = ({ navigate }: { navigate: NavigateFunction }) => {
     mutationFn: (data: LoginInputs) => userLoginHandler(data),
     onError: (error: any) => {
       toast({
-        title: "وای!",
+        title: "🤦‍♂️",
         description: error.message || "خطایی رخ داده بعدا امتحان کنید", 
         variant: "destructive",
       });
@@ -39,7 +39,7 @@ export const useRegister = ({ navigate }: { navigate: NavigateFunction }) => {
     mutationFn: (data: RegisterInputs) => userRegisterHandler(data),
     onError: (error: any) => {
       toast({
-        title: "وای!",
+        title: "🤦‍♂️",
         description: error.message || "خطایی رخ داده بعدا امتحان کنید",
         variant: "destructive",
       });

@@ -1,8 +1,8 @@
-import CustomerFulfilment from "@/components/CustomerFulfilment/CustomerFullfilment";
-import Sales from "@/components/Sales/Sales";
-import TopProducts from "@/components/TopProducts/TopProducts";
-import Users from "@/components/Users/Users";
-import YearlySales from "@/components/YearlySales/YearlySales";
+import CustomerFulfilment from "@/components/HomePage/CustomerFulfilment/CustomerFullfilment";
+import Sales from "@/components/HomePage/Sales/Sales";
+import TopProducts from "@/components/HomePage/TopProducts/TopProducts";
+import Users from "@/components/HomePage/Users/Users";
+import YearlySales from "@/components/HomePage/YearlySales/YearlySales";
 
 export default function Home() {
   return (

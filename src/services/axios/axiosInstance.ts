@@ -16,11 +16,8 @@ AXIOS.interceptors.request.use(
     return config;
   },
   (error) => {
-    if (error?.response?.data?.errors) {
-      return Promise.reject(error.response.data.errors);
-    } else {
-      return Promise.reject(error);
-    }
+    const errorMessage = error?.response?.data?.errors || error.message;
+    return Promise.reject(errorMessage);
   }
 );
 

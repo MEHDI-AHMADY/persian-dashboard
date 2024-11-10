@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
+import Header from './components/share/Header/Header';
+import Sidebar from './components/share/Sidebar/Sidebar';
 import { ToastProvider  } from './components/ui/toast';
 
 export default function Layout() {

@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import * as React from "react";
 import {
   Bar,
   BarChart,
@@ -65,30 +66,30 @@ const Chart: React.FC<ChartProps> = ({
         </CardTitle>
       </CardHeader>
       <CardContent
-        className={`w-[112%] flex justify-between p-0 mb-0`}
+        className={`w-[100%] flex justify-between p-0 mb-0`}
         style={{ height: `${height}px` }}
       >
         <ResponsiveContainer width="100%" height="100%">
           <ChartComponent data={data} barCategoryGap="20%">
-            <XAxis
-              dataKey={xAxis}
-              stroke="#A9DFD8"
-              fontSize={12}
-              tickLine={false}
-              axisLine={false}
-              tick={tick}
-              reversed={true}
-              padding={{ left: 0, right: 0 }}
-            />
-            <YAxis
-              stroke="#888888"
-              fontSize={12}
-              tickLine={false}
-              axisLine={false}
-              tick={tick}
-              tickFormatter={(value:number) => `${value}`}
-              margin={{ bottom: 0 }}
-            />
+            {React.createElement("XAxis" as keyof JSX.IntrinsicElements, {
+              dataKey: xAxis,
+              stroke: "#A9DFD8",
+              fontSize: 12,
+              tickLine: false,
+              axisLine: false,
+              tick: tick,
+              reversed: true,
+              padding: { left: 0, right: 0 },
+            })}
+            {React.createElement("YAxis" as keyof JSX.IntrinsicElements, {
+              stroke: "#888888",
+              fontSize: 12,
+              tickLine: false,
+              axisLine: false,
+              tick: tick,
+              tickFormatter: (value: number) => `${value}`,
+              margin: { bottom: 0 },
+            })}
             {yAxis.map((axis) => {
               const Component = DataComponent as React.ComponentType<any>;
               return (

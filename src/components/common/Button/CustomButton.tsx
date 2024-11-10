@@ -1,4 +1,4 @@
-import { Button as ShadcnBtn } from "../ui/button";
+import { Button as ShadcnBtn } from "../../ui/button";
 import { Loader2 } from "lucide-react";
 
 type ButtonProps = {

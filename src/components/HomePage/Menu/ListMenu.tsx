@@ -1,5 +1,5 @@
-import SidebarItem from "../Sidebar/SidebarItem";
-import { sidebarIcons } from "../Sidebar/sidebarIcons";
+import SidebarItem from "../../share/Sidebar/SidebarItem";
+import { sidebarIcons } from "../../share/Sidebar/sidebarIcons";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 

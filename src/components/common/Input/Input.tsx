@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input as ShadcnInput } from "../ui/input";
+import { Input as ShadcnInput } from "../../ui/input";
 import { UseFormRegister } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";

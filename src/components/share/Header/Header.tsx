@@ -1,9 +1,9 @@
 import { AvatarDemo } from "./Avatar";
 import { IoIosNotifications } from "react-icons/io";
-import Input from "../Input/Input";
+import Input from "../../common/Input/Input";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
-import Menu from "../Menu/Menu";
+import Menu from "../../HomePage/Menu/Menu";
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState<boolean>(false);
