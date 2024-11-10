@@ -8,8 +8,6 @@ import {
   Area,
   AreaChart,
   ResponsiveContainer,
-  XAxis,
-  YAxis,
   Tooltip,
   TooltipProps,
 } from "recharts";
