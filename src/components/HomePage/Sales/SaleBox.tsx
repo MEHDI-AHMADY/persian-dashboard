@@ -16,10 +16,10 @@ export default function SaleBox({
 
 
   return (
-    <div className="flex flex-col gap-1 bg-secondary p-2 rounded-sm ">
+    <div className="flex flex-col gap-1 bg-secondary p-2 rounded-sm">
       <Icon className={`${color} text-xl`} />
       <span>{count.toLocaleString()}</span>
-      <span className={`text-base ${color}`}>{title}</span>
+      <span className={`font-IranSansLight text-base ${color}`}>{title}</span>
     </div>
   );
 }

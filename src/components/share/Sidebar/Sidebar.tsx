@@ -1,3 +1,4 @@
+import { handleLogOut } from "@/utils/funcs";
 import { clsx } from "clsx";
 import { useLocation } from "react-router-dom";
 import { sidebarIcons } from "./sidebarIcons";
@@ -11,6 +12,7 @@ export default function Sidebar() {
       <div className="hidden lg:flex bg-primary flex-col gap-[36px] py-20">
         {sidebarIcons.map((icon, index) => (
           <SidebarItem
+            onClick={() => handleLogOut(icon.label)}
             key={index}
             path={icon.path}
             icon={icon.icon}
@@ -27,9 +29,10 @@ export default function Sidebar() {
       <div className="py-16 flex flex-col gap-[6px] bg-primary px-[20px]">
         {sidebarIcons.map((icon, index) => (
           <SidebarItem
+            onClick={() => handleLogOut(icon.label)}
             key={index}
             {...icon}
-            className={clsx("flex items-center gap-2 px-4 py-2.5 rounded-md", {
+            className={clsx("flex items-center gap-2 px-4 py-2.5 rounded-md text-base lg:text-lg", {
               "bg-sidebarMainColor rounded-md text-black":
                 icon.path === "/"
                   ? pathname === icon.path

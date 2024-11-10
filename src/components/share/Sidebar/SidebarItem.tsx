@@ -4,19 +4,20 @@ import { Link } from "react-router-dom";
 type SidebarItemProps = {
   icon: IconType;
   label?: string;
-  path: string;
+  path?: string;
   className?: string;
+  onClick?: () => void;
 };
 
 export default function SidebarItem({
-  icon:Icon,
+  icon: Icon,
   label,
   path,
   className,
+  onClick,
 }: SidebarItemProps) {
-
   return (
-    <Link to={path} className={className}>
+    <Link onClick={onClick} to={path || "#"} className={className}>
       <Icon className="cursor-pointer" />
       {label && <span>{label}</span>}
     </Link>

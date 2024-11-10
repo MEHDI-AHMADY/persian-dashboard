@@ -5,8 +5,9 @@ export default {
   theme: {
   	extend: {
 		fontFamily : {
-			MinaRegular : "MinaRegular",
-			MinaBold : "MinaBold"
+			IranSans : "IranSans",
+			IranSansBold : "IranSansBold",
+			IranSansLight : "IranSansLight"
 		},
   		backgroundColor: {
   			primary: '#171821',

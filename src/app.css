@@ -4,14 +4,20 @@
 
 @layer base {
   @font-face {
-    font-family: MinaRegular, sans-serif;
-    src: url("/fonts/Mina-Regular.ttf"), format(truetype);
+    font-family: IranSans;
+    src: url("/fonts/IRANSansXFaNum-Regular.ttf"), format(truetype);
     font-display: swap;
   }
 
   @font-face {
-    font-family: MinaBold, sans-serif;
-    src: url("/fonts/Mina-Bold.ttf"), format(truetype);
+    font-family: IranSansBold;
+    src: url("/fonts/IRANSansXFaNum-Bold.ttf"), format(truetype);
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: IranSansLight;
+    src: url("/fonts/IRANSansXFaNum-Light.ttf"), format(truetype);
     font-display: swap;
   }
 
@@ -76,7 +82,7 @@
   }
 
   body {
-    @apply bg-secondary text-foreground font-MinaRegular text-white text-lg;
+    @apply bg-secondary text-foreground font-IranSans text-white text-lg;
   }
 
   input:-webkit-autofill,
@@ -114,6 +120,10 @@
 }
 
 @layer components {
+  .custom-height {
+    height: calc(100vh - 80px);
+  }
+  
   .glassy-background {
     background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(10px);
@@ -125,4 +135,19 @@
   .neon {
     filter: url(#neon);
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-white rounded-md
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-sidebarMainColor rounded-sm
+}
+
 }

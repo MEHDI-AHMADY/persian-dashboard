@@ -2,6 +2,7 @@ import SidebarItem from "../../share/Sidebar/SidebarItem";
 import { sidebarIcons } from "../../share/Sidebar/sidebarIcons";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { handleLogOut } from "@/utils/funcs";
 
 const menuItem = {
   hidden: { opacity: 0, x: 60 },
@@ -26,6 +27,7 @@ export default function ListMenu() {
           custom={index}
         >
           <SidebarItem
+          onClick={() => handleLogOut(icon.label)}
             icon={icon.icon}
             label={icon.label}
             path={icon.path}

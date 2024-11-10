@@ -6,7 +6,7 @@ import YearlySales from "@/components/HomePage/YearlySales/YearlySales";
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5 lg:overflow-auto lg:custom-height">
       <Sales />
       <YearlySales />
       <TopProducts />
