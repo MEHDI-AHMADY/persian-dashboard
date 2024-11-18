@@ -1,5 +1,7 @@
 import { useToast } from "@/hooks/use-toast";
+import { getUserToken } from "@/utils/funcs";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import { NavigateFunction } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { LoginInputs } from "../pages/Login";
@@ -21,7 +23,7 @@ export const useLogin = ({ navigate }: { navigate: NavigateFunction }) => {
     onError: (error: any) => {
       toast({
         title: "🤦‍♂️",
-        description: error.message || "خطایی رخ داده بعدا امتحان کنید", 
+        description: error.message ? error.message : "خطایی رخ داده بعدا امتحان کنید", 
         variant: "destructive",
       });
     },
@@ -40,7 +42,7 @@ export const useRegister = ({ navigate }: { navigate: NavigateFunction }) => {
     onError: (error: any) => {
       toast({
         title: "🤦‍♂️",
-        description: error.message || "خطایی رخ داده بعدا امتحان کنید",
+        description: error.message? error.message : "خطایی رخ داده بعدا امتحان کنید",
         variant: "destructive",
       });
     },
@@ -51,7 +53,7 @@ export const useRegister = ({ navigate }: { navigate: NavigateFunction }) => {
 };
 
 export const useGetUser = () => {
-  const userToken = cookie.get("userToken");
+  const userToken = useMemo(() => getUserToken(), [])
 
   return useQuery({
     queryKey: ["getUser", userToken],

@@ -3,5 +3,5 @@ type InputErrorProps = {
 };
 
 export default function InputError({ message } : InputErrorProps) {
-  return <p className="font-thin mt-1 text-orange">{message}</p>;
+  return <p className="font-thin mt-1 text-orange text-sm">{message}</p>;
 }

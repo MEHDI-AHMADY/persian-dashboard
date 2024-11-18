@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputError from "@/components/common/Input/InputError";
 import AnimatedSvg from "@/components/AnimatedSvg/AnimatedSvg";
+import { useDimensions } from "@/hooks/useDimensions";
 
 export type LoginInputs = {
   email: string;
@@ -15,13 +16,18 @@ export type LoginInputs = {
 };
 
 const loginFormAnimation = {
-  hidden: { opacity: 0, y: 170 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.6 } },
+  hidden: { opacity: 0, y: 200 },
+  show: { opacity: 1, y: [-100, 50, 0], transition: { duration: 2 } },
 };
 
 export default function Login() {
+  const { ref, dimensions } = useDimensions<HTMLFormElement>();
+
   const schema = yup.object().shape({
-    email: yup.string().required("این فیلد الزامیست").email(),
+    email: yup
+      .string()
+      .required("این فیلد الزامیست")
+      .email("ایمیل وارد شده معتبر نیست"),
     password: yup
       .string()
       .required("این فیلد الزامیست")
@@ -58,6 +64,7 @@ export default function Login() {
       >
         <FormProvider {...methods}>
           <form
+            ref={ref}
             onSubmit={handleSubmit(loginHandler)}
             className="p-5 h-fit rounded-md flex flex-col "
           >
@@ -73,7 +80,7 @@ export default function Login() {
               showPasswordToggle
             />
             {errors?.password && (
-              <InputError message={errors?.email?.message} />
+              <InputError message={errors?.password?.message} />
             )}
 
             <Button
@@ -95,8 +102,8 @@ export default function Login() {
             </p>
           </form>
         </FormProvider>
-        <AnimatedSvg />
+        <AnimatedSvg dimensions={dimensions} />
       </motion.div>
-      </div>
+    </div>
   );
 }

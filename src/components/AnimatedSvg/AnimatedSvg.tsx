@@ -1,24 +1,13 @@
 import {motion} from "framer-motion";
-import {useState,useRef , useEffect} from 'react'
 
-export default function AnimatedSvg() {
-    const divRef = useRef<HTMLDivElement>(null);
-    const [dimensions, setDimensions] = useState({
-        width: 0,
-        height: 0,
-        top: 0,
-        left: 0
-      });
+interface AnimatedSvgProps {
+  dimensions: { width: number; height: number };
+}
+
+export default function AnimatedSvg({ dimensions }: AnimatedSvgProps) {
     
-      useEffect(() => {
-        if (!divRef.current) return;
-    
-        const { width, height, top, left } = divRef.current.getBoundingClientRect();
-    
-        setDimensions({ width, height, top, left });
-      }, []);
   return (
-    <div ref={divRef} className="absolute inset-0 flex items-center justify-center h-auto w-full -z-10 overflow-hidden">
+    <div className="absolute inset-0 flex items-center justify-center h-auto w-full -z-10 overflow-hidden">
         <motion.svg
         className="absolute rounded-md"
         width={dimensions.width + 100}
@@ -86,7 +75,7 @@ export default function AnimatedSvg() {
           </filter>
         </defs>
 
-        <svg className="neon rounded-md" x={50} y={50} >
+        <svg className="absolute inset-0" x="50" y="50">
           <motion.path
             d={`M 0 0 h ${dimensions.width} v ${dimensions.height} h -${dimensions.width} v -${dimensions.height}`}
             stroke="orange"

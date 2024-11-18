@@ -5,3 +5,5 @@ export const handleLogOut = (label: string) => {
     cookie.remove("userToken");
   }
 };
+
+export const getUserToken = () => cookie.get("userToken");

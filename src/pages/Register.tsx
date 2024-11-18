@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputError from "@/components/common/Input/InputError";
 import AnimatedSvg from "@/components/AnimatedSvg/AnimatedSvg";
+import { useDimensions } from "@/hooks/useDimensions";
 
 export type RegisterInputs = {
   fullName: string;
@@ -17,17 +18,19 @@ export type RegisterInputs = {
 };
 
 const registerFormAnimation = {
-  hidden: { opacity: 0, y: -170 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.6 } },
+  hidden: { opacity: 0, y: -300 },
+  show: { opacity: [0.4 , 0.7 , 1], y: [100 , -50 , 0], transition: { duration: 2} },
 };
 
 export default function Register() {
+  const {ref , dimensions} = useDimensions<HTMLFormElement>();
+
   const schema = yup.object().shape({
     fullName: yup
       .string()
       .required("این فیلد الزامیست")
       .min(3, "حداقل باید 3 کاراکتر داشته باشد!"),
-    email: yup.string().email().required("این فیلد الزامیست"),
+    email: yup.string().required("این فیلد الزامیست").email("ایمیل وارد شده معتبر نیست"),
     password: yup
       .string()
       .required("این فیلد الزامیست")
@@ -68,8 +71,9 @@ export default function Register() {
         className="glassy-background relative min-w-[320px] sm:min-w-[440px] min-h-[400px]"
       >
         <form
+        ref={ref}
           onSubmit={handleSubmit(registerHandler)}
-          className="w-full absolute inset-0 z-10 p-5 h-fit rounded-md flex flex-col"
+          className="w-full z-10 p-5 h-fit rounded-md flex flex-col"
         >
           <span className="text-xl text-center w-full">ثبت نام</span>
 
@@ -78,7 +82,7 @@ export default function Register() {
             placeholder="نام و نام خانوادگی"
             register={register}
           />
-          {errors?.fullName && <InputError message={errors?.email?.message} />}
+          {errors?.fullName && <InputError message={errors?.fullName?.message} />}
 
           <Input name="email" placeholder="ایمیل" register={register} />
           {errors?.email && <InputError message={errors?.email?.message} />}
@@ -90,7 +94,7 @@ export default function Register() {
             register={register}
             showPasswordToggle
           />
-          {errors?.password && <InputError message={errors?.email?.message} />}
+          {errors?.password && <InputError message={errors?.password?.message} />}
 
           <Input
             name="confirmPassword"
@@ -100,7 +104,7 @@ export default function Register() {
             showPasswordToggle
           />
           {errors?.confirmPassword && (
-            <InputError message={errors?.email?.message} />
+            <InputError message={errors?.confirmPassword?.message} />
           )}
 
           <Button
@@ -121,7 +125,7 @@ export default function Register() {
             </Link>
           </p>
         </form>
-        <AnimatedSvg />
+        <AnimatedSvg dimensions={dimensions}/>
       </motion.div>
     </div>
   );
