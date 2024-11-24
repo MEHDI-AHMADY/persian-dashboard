@@ -7,7 +7,11 @@ export const userLoginHandler = async (data: LoginInputs) => {
     const response = await AXIOS.post("auth/login", data);
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response.data.errors[0]);
+    if (error.response.status === 500) {
+      throw new Error("خطایی رخ داده بعدا امتحان کنید");
+    } else {
+     throw new Error(error.response.data.errors[0]);
+    }
   }
 };
 
@@ -16,7 +20,11 @@ export const userRegisterHandler = async (data: RegisterInputs) => {
     const response = await AXIOS.post("auth/register", data);
     return response;
   } catch (error: any) {
-    throw new Error(error.response.data.errors[0]);
+    if (error.response.status === 500) {
+      throw new Error("خطایی رخ داده بعدا امتحان کنید");
+    } else {
+     throw new Error(error.response.data.errors[0]);
+    }
   }
 };
 

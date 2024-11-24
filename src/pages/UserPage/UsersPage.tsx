@@ -22,7 +22,7 @@ export default function UsersPage() {
   const columns = userPageColumns(handleDelete, handleEdit);
 
   return (
-    <div className="col-span-2 md:col-span-3 mt-4 lg:mt-10">
+    <div className="col-span-2 md:col-span-3 mt-5 lg:mt-10">
       <DataTable columns={columns} data={allUsers || []} title="کاربران" />
       {isShowDeleteModal && (
         <QuestionDialog
