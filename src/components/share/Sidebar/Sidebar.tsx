@@ -1,4 +1,4 @@
-import { handleLogOut } from "@/utils/funcs";
+import { handleLogOut } from "@/lib/utils"; 
 import { clsx } from "clsx";
 import { useLocation } from "react-router-dom";
 import { sidebarIcons } from "./sidebarIcons";

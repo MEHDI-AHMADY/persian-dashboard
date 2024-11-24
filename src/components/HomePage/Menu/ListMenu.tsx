@@ -2,7 +2,7 @@ import SidebarItem from "../../share/Sidebar/SidebarItem";
 import { sidebarIcons } from "../../share/Sidebar/sidebarIcons";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { handleLogOut } from "@/utils/funcs";
+import { handleLogOut } from "@/lib/utils";
 
 const menuItem = {
   hidden: { opacity: 0, x: 60 },

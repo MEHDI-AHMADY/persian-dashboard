@@ -1,5 +1,5 @@
 import { useToast } from "@/hooks/use-toast";
-import { getUserToken } from "@/utils/funcs";
+import { getUserToken } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { NavigateFunction } from "react-router-dom";
