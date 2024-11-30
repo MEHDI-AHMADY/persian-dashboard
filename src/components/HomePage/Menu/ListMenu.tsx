@@ -1,8 +1,9 @@
 import SidebarItem from "../../share/Sidebar/SidebarItem";
 import { sidebarIcons } from "../../share/Sidebar/sidebarIcons";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { handleLogOut } from "@/lib/utils";
+import { clsx } from "clsx";
 
 const menuItem = {
   hidden: { opacity: 0, x: 60 },
@@ -14,7 +15,7 @@ const menuItem = {
 };
 
 export default function ListMenu() {
-  const { pathParam } = useParams();
+  const { pathname } = useLocation();
 
   return (
     <ul className="flex flex-col gap-4">
@@ -27,15 +28,20 @@ export default function ListMenu() {
           custom={index}
         >
           <SidebarItem
-          onClick={() => handleLogOut(icon.label)}
+            onClick={() => handleLogOut(icon.label)}
             icon={icon.icon}
             label={icon.label}
             path={icon.path}
-            className={`flex items-center gap-2 rounded-md p-2 ${
-              index === 0 || pathParam?.startsWith(icon.path)
-                ? "bg-[#A9DFD8] rounded-md text-black"
-                : "hover:border-b"
-            }`}
+            className={clsx("flex items-center gap-2 rounded-md p-2", {
+              "bg-sidebarMainColor rounded-md text-black":
+                icon.path === "/"
+                  ? pathname === icon.path
+                  : pathname.startsWith(icon.path),
+              "hover:border-b":
+                icon.path === "/"
+                  ? pathname !== icon.path
+                  : !pathname.startsWith(icon.path),
+            })}
           />
         </motion.li>
       ))}

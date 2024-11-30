@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputError from "@/components/common/Input/InputError";
-import AnimatedSvg from "@/components/AnimatedSvg/AnimatedSvg";
+import AnimatedSvg from "@/components/share/AnimatedSvg/AnimatedSvg";
 import { useDimensions } from "@/hooks/useDimensions";
 
 export type LoginInputs = {

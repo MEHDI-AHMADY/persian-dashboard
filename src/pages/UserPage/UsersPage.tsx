@@ -8,10 +8,10 @@ export default function UsersPage() {
   const { data: allUsers } = useGetAllUsers();
 
   const [isShowDeleteModal, setIsShowDeleteModal] = useState<boolean>(false);
-  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  // const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
-  const handleDelete = (id: string) => {
-    setSelectedUserId(id);
+  const handleDelete = () => {
+    // setSelectedUserId(id);
     setIsShowDeleteModal(true);
   };
 
